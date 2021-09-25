@@ -4,18 +4,13 @@ var lowercaseArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
 var numbArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var specialArray = ["@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+"];
 var combinedArray = []
-
-//generated arrays
-
+var pwdArray = []
 
 
-
-//global functions
-
-//function determine password length
+// determine password length
 
 
-function userInputCompile() {
+function genPwd() {
     //prompt for size of pwd between 8 and 128 characters and qualify that password length input is usable and store as variable (or re-run prompt)
 
   var pwdLength = parseInt(prompt("Enter your desired length of your password.\nYou can choose a number between 8-128."))
@@ -25,7 +20,7 @@ function userInputCompile() {
 
     //if input is not usable, the user is brought back to the prompt
 
-    writePassword()
+    genPwd()
 
     //if input is usable, the user can proceed
 
@@ -34,8 +29,8 @@ function userInputCompile() {
     console.log(pwdLength)
   }
 
-    //prompt for selection of password character types (lowercase, uppercase, numerical, and special characters)
-    // then enter each selected array into a combined array for selecting the the password from
+   //prompt for selection of password character types (lowercase, uppercase, numerical, and special characters)
+   // then enter each selected array into a combined array for selecting the the password from
 
   var specialSelect = confirm("Would you like your password to contain special characters?")
   if (specialSelect) {
@@ -70,46 +65,48 @@ function userInputCompile() {
   //randomly select user-determined number of pwd characters from concatenated array
   finalizePwd()
   function finalizePwd() {
-  let pwdArray = combinedArray.sort(() => 0.5 - Math.random()).slice(0,pwdLength)
-  console.log(pwdArray);
-  }
+    for(i = 0; i < pwdLength; i++){
+      pwdArray[i] = combinedArray[Math.floor(Math.random() * combinedArray.length)];
+    }  console.log(pwdArray);
   
+    //qualify that pwd array contains at least one of each user-selected character types
+
   if (specialSelect) {
   var specialfound = pwdArray.some(r=> specialArray.indexOf(r) >= 0)
   console.log(specialfound)
-  } else {
-    finalizePwd()
-  }
+    if (!specialfound) {
+      finalizePwd()      
+      return
+    }}
 
   if (numbSelect) {
   var numbfound = pwdArray.some(r=> numbArray.indexOf(r) >= 0)
   console.log(numbfound)
-} else {
-  finalizePwd()
-}
+    if (!numbfound) {
+    finalizePwd()
+    return
+  }}
 
   if (upperSelect) {
   var upperfound = pwdArray.some(r=> uppercaseArray.indexOf(r) >= 0)
   console.log(upperfound)
-} else {
-  finalizePwd()
-}
+    if (!upperfound) {
+    finalizePwd()
+    return
+  }}
 
   if (lowerSelect) {
   var lowerfound = pwdArray.some(r=> lowercaseArray.indexOf(r) >= 0)
   console.log(lowerfound)
-} else {
-  finalizePwd()
+    if (!lowerfound) {
+    finalizePwd()
+    return
+  }}
 }
-console.log("this is the final" + pwdArray);
+console.log("this is the final " + pwdArray);
 
-
-
-
-}
-
-
-
+return pwdArray.join("")
+  }
 
 
 // Assignment Code
@@ -126,31 +123,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
-
-//function to generate password
-
-function genPwd() {
-  var userOptions = userInputCompile() 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //qualify that pwd array contains at least one of each user-selected character types
-
-
-
-  //display generated password
-
-}
