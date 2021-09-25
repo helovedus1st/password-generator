@@ -24,13 +24,18 @@ function userInputCompile() {
     console.log("I am NOT an usable password length.")
 
     //if input is not usable, the user is brought back to the prompt
+
     writePassword()
 
-    //if this is right they can proceed
+    //if input is usable, the user can proceed
+
   } else {
     console.log("I AM an usable password length.")
     console.log(pwdLength)
   }
+
+    //prompt for selection of password character types (lowercase, uppercase, numerical, and special characters)
+    // then enter each selected array into a combined array for selecting the the password from
 
   var specialSelect = confirm("Would you like your password to contain special characters?")
   if (specialSelect) {
@@ -56,14 +61,53 @@ function userInputCompile() {
     console.log(combinedArray)
   }
 
+  //if no selection is made, the user is brought back to the prompt
   if (!specialSelect && !numbSelect && !upperSelect && !lowerSelect) {
     alert("You must choose at least one character type.\nClick OK to start over.")
     genPwd()
   }
 
+  //randomly select user-determined number of pwd characters from concatenated array
+  finalizePwd()
+  function finalizePwd() {
+  let pwdArray = combinedArray.sort(() => 0.5 - Math.random()).slice(0,pwdLength)
+  console.log(pwdArray);
+  }
   
+  if (specialSelect) {
+  var specialfound = pwdArray.some(r=> specialArray.indexOf(r) >= 0)
+  console.log(specialfound)
+  } else {
+    finalizePwd()
+  }
+
+  if (numbSelect) {
+  var numbfound = pwdArray.some(r=> numbArray.indexOf(r) >= 0)
+  console.log(numbfound)
+} else {
+  finalizePwd()
+}
+
+  if (upperSelect) {
+  var upperfound = pwdArray.some(r=> uppercaseArray.indexOf(r) >= 0)
+  console.log(upperfound)
+} else {
+  finalizePwd()
+}
+
+  if (lowerSelect) {
+  var lowerfound = pwdArray.some(r=> lowercaseArray.indexOf(r) >= 0)
+  console.log(lowerfound)
+} else {
+  finalizePwd()
+}
+console.log("this is the final" + pwdArray);
+
+
+
 
 }
+
 
 
 
@@ -96,19 +140,10 @@ function genPwd() {
 
 
 
-  //prompt for selection of password character types (lowercase, uppercase, numerical, and special characters)
 
 
 
-  //qualify that at least one character type has been selected or re-run prompt
 
-
-
-  //concatenate all arrays that should be included in possible pwd characters into new array
-
-
-
-  //randomly select user-determined number of pwd characters and combine into new array
 
 
 
