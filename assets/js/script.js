@@ -13,9 +13,9 @@ var pwdArray = []
 function genPwd() {
     //prompt for size of pwd between 8 and 128 characters and qualify that password length input is usable and store as variable (or re-run prompt)
 
-  var pwdLength = parseInt(prompt("Enter your desired length of your password.\nYou can choose a number between 8-128."))
+  var pwdLength = parseInt(prompt("Enter the desired length of your password.\nYou must choose a number between 8-128."))
   if (!Number.isInteger(pwdLength) || (pwdLength < 8) || (pwdLength > 128)) {
-    alert("You must enter a numeral between 8-128.");
+    alert("You must enter a number between 8-128.\nClick OK to try again.");
     console.log("I am NOT an usable password length.")
 
     //if input is not usable, the user is brought back to the prompt
