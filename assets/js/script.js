@@ -20,47 +20,47 @@ function genPwd() {
 
     //if input is not usable, the user is brought back to the prompt
 
-    genPwd()
-
+    writePassword()
+    
     //if input is usable, the user can proceed
 
   } else {
     console.log("I AM an usable password length.")
     console.log(pwdLength)
-  }
 
-   //prompt for selection of password character types (lowercase, uppercase, numerical, and special characters)
-   // then enter each selected array into a combined array for selecting the the password from
+    //prompt for selection of password character types (lowercase, uppercase, numerical, and special characters)
+    // then enter each selected array into a combined array for selecting the the password from
 
-  var specialSelect = confirm("Would you like your password to contain special characters?")
-  if (specialSelect) {
-    combinedArray = combinedArray.concat(specialArray);
-    console.log(combinedArray)
-  }
+    var specialSelect = confirm("Would you like your password to contain special characters?")
+    if (specialSelect) {
+      combinedArray = combinedArray.concat(specialArray);
+      console.log(combinedArray)
+    }
 
-  var numbSelect = confirm ("Would you like your password to contain numbers?")
-  if (numbSelect) {
-    combinedArray = combinedArray.concat(numbArray);
-    console.log(combinedArray)
-  }
+    var numbSelect = confirm ("Would you like your password to contain numbers?")
+    if (numbSelect) {
+      combinedArray = combinedArray.concat(numbArray);
+      console.log(combinedArray)
+    }
 
-  var upperSelect = confirm ("Would you like your password to contain uppercase letters?")
-  if (upperSelect) {
-    combinedArray = combinedArray.concat(uppercaseArray);
-    console.log(combinedArray)
-  }
+    var upperSelect = confirm ("Would you like your password to contain uppercase letters?")
+    if (upperSelect) {
+      combinedArray = combinedArray.concat(uppercaseArray);
+      console.log(combinedArray)
+    }
 
-  var lowerSelect = confirm ("Would you like your password to contain lowercase letters?")
-  if (lowerSelect) {
-    combinedArray = combinedArray.concat(lowercaseArray);
-    console.log(combinedArray)
-  }
+    var lowerSelect = confirm ("Would you like your password to contain lowercase letters?")
+    if (lowerSelect) {
+      combinedArray = combinedArray.concat(lowercaseArray);
+      console.log(combinedArray)
+    }
 
-  //if no selection is made, the user is brought back to the prompt
-  if (!specialSelect && !numbSelect && !upperSelect && !lowerSelect) {
-    alert("You must choose at least one character type.\nClick OK to start over.")
-    genPwd()
-  }
+    //if no selection is made, the user is brought back to the prompt
+    if (!specialSelect && !numbSelect && !upperSelect && !lowerSelect) {
+      alert("You must choose at least one character type.\nClick OK to start over.")
+      genPwd()
+      return
+    }
 
   //randomly select user-determined number of pwd characters from concatenated array
   finalizePwd()
@@ -76,7 +76,7 @@ function genPwd() {
   console.log(specialfound)
     if (!specialfound) {
       finalizePwd()      
-      return
+      
     }}
 
   if (numbSelect) {
@@ -84,7 +84,7 @@ function genPwd() {
   console.log(numbfound)
     if (!numbfound) {
     finalizePwd()
-    return
+    
   }}
 
   if (upperSelect) {
@@ -92,7 +92,7 @@ function genPwd() {
   console.log(upperfound)
     if (!upperfound) {
     finalizePwd()
-    return
+    
   }}
 
   if (lowerSelect) {
@@ -104,6 +104,7 @@ function genPwd() {
   }}
 }
 console.log("this is the final " + pwdArray);
+}
 
 return pwdArray.join("")
   }
